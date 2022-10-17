@@ -153,7 +153,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2146636150}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &59164976
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   spawnController: {fileID: 2105118606}
   uiController: {fileID: 1622076948}
   pooledObjects: []
-  maxAmountPerPool: 100
+  maxAmountPerPool: 1000
   maxMotionDistance: 100
   spawnCooldown: 1
   cubePrefab: {fileID: 2967804419555294505, guid: 80cefb31e935b4b94ad638ec08099ac1, type: 3}
@@ -2791,7 +2791,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2146636150}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2105118606
 MonoBehaviour:
@@ -2835,8 +2835,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 682447275}
-  - {fileID: 2105118605}
   - {fileID: 59164975}
+  - {fileID: 2105118605}
   - {fileID: 1622076947}
   m_Father: {fileID: 0}
   m_RootOrder: 0
