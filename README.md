@@ -3,7 +3,7 @@
   <img width="736" height="364" src="https://github.com/RimuruDev/TestTaskFromPlayclapp/blob/main/GitResources/Sample.gif">
 </p>
 
-# :clipboard:Technical task:
+# :clipboard:Technical task by Playclapp:
 
 ## Ru:
 - Необходимо разработать Unity-проект. Приложение должно спаунить 3D-кубы, которые затем
