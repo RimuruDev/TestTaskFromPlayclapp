@@ -29,7 +29,9 @@ namespace RimuruDev.FromPlayclapp
         {
             for (int i = 0; i < dataContainer.MaxAmountPerPool; i++)
             {
-                var cube = Instantiate(dataContainer.CubePrefab, dataContainer.SpawnPoint);
+                var rndIndex = UnityEngine.Random.Range(0, dataContainer.ObjectPrefab.Length);
+                var cube = Instantiate(dataContainer.ObjectPrefab[rndIndex], dataContainer.SpawnPoint);
+
                 cube.transform.SetParent(dataContainer.ObjectContainerParent);
                 cube.SetActive(false);
 

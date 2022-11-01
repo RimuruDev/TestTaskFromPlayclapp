@@ -20,7 +20,7 @@ namespace RimuruDev.FromPlayclapp
         [SerializeField] private float spawnCooldown = 0.3f;
 
         [Header("Prefabs and points")]
-        [SerializeField] private GameObject cubePrefab;
+        [SerializeField] private GameObject[] objectPrefab;
         [SerializeField] private Transform objectContainerParent;
         [SerializeField] private Transform spawnPoint;
 
@@ -46,7 +46,7 @@ namespace RimuruDev.FromPlayclapp
         public float MaxMotionDistance { get => maxMotionDistance; set => maxMotionDistance = value; }
         public float SpawnCooldown { get => spawnCooldown; set => spawnCooldown = value; }
 
-        public GameObject CubePrefab { get => cubePrefab; set => cubePrefab = value; }
+        public GameObject[] ObjectPrefab { get => objectPrefab; set => objectPrefab = value; }
         public Transform ObjectContainerParent { get => objectContainerParent; set => objectContainerParent = value; }
         public Transform SpawnPoint { get => spawnPoint; set => spawnPoint = value; }
 

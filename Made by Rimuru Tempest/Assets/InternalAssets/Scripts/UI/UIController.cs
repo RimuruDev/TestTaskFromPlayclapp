@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,25 +8,82 @@ namespace RimuruDev.FromPlayclapp
     {
         [SerializeField] private GameDataContainer dataContainer;
 
+        private void Awake()
+        {
+            if (dataContainer == null)
+                dataContainer = FindObjectOfType<GameDataContainer>();
+        }
+
         private void Start()
         {
             dataContainer.MotionSpeedInputField.text = dataContainer.motionSpeed.ToString();
             dataContainer.SpawnCooldownInputField.text = dataContainer.SpawnCooldown.ToString();
             dataContainer.MaxDistanceInputField.text = dataContainer.MaxMotionDistance.ToString();
+
+            dataContainer.MotionSpeedText.text = $"Motion speed: {dataContainer.motionSpeed}";
+            dataContainer.SpawnCooldownText.text = $"Spawn cooldown: {dataContainer.SpawnCooldown}";
+            dataContainer.MaxDistanceText.text = $"Max distance: {dataContainer.MaxMotionDistance}";
         }
 
-        private void Update()
+        public void EnterMotionSpeed()
         {
-            // TODO: Replace Parse with TryParse
-            dataContainer.MotionSpeedText.text = $"Motion speed: {dataContainer.motionSpeed}";
-            dataContainer.motionSpeed = float.Parse(dataContainer.MotionSpeedInputField.text);
+            float previousValue = dataContainer.motionSpeed;
 
-            dataContainer.SpawnCooldownText.text = $"Spawn cooldown: {dataContainer.SpawnCooldown}";
-            dataContainer.SpawnCooldown = float.Parse(dataContainer.SpawnCooldownInputField.text);
+            if (float.TryParse(dataContainer.MotionSpeedInputField.text, out float result))
+            {
+                if (result < 0)
+                    result = previousValue;
 
-            dataContainer.MaxDistanceText.text = $"Max distance: {dataContainer.MaxMotionDistance}";
-            dataContainer.MaxMotionDistance = float.Parse(dataContainer.MaxDistanceInputField.text);
+                if (result == 0)
+                    result = 0.01f;
 
+                if (result >= short.MaxValue)
+                    result = previousValue;
+
+                dataContainer.motionSpeed = result;
+                dataContainer.MotionSpeedText.text = $"Motion speed: {dataContainer.motionSpeed}";
+            }
+        }
+
+        public void EnterSpawnCooldown()
+        {
+            float previousValue = dataContainer.SpawnCooldown;
+
+            if (float.TryParse(dataContainer.SpawnCooldownInputField.text, out float result))
+            {
+                if (result < 0)
+                    result = previousValue;
+
+                if (result == 0)
+                    result = 0.01f;
+
+                if (result >= short.MaxValue)
+                    result = previousValue;
+
+                dataContainer.SpawnCooldown = result;
+                dataContainer.SpawnCooldownText.text = $"Spawn cooldown: {dataContainer.SpawnCooldown}";
+            }
+
+        }
+
+        public void EnterMaxDistance()
+        {
+            float previousValue = dataContainer.MaxMotionDistance;
+
+            if (float.TryParse(dataContainer.MaxDistanceInputField.text, out float result))
+            {
+                if (result < 0)
+                    result = previousValue;
+
+                if (result == 0)
+                    result = 0.01f;
+
+                if (result >= short.MaxValue)
+                    result = previousValue;
+
+                dataContainer.MaxMotionDistance = result;
+                dataContainer.MaxDistanceText.text = $"Max distance: {dataContainer.MaxMotionDistance}";
+            }
         }
     }
 }
