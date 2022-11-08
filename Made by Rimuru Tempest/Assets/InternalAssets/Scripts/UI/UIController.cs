@@ -6,10 +6,6 @@ namespace RimuruDev.FromPlayclapp
 {
     public sealed class UIController : MonoBehaviour
     {
-        public Action OnEnterMotionSpeed;
-        public Action OnEnterSpawnCooldown;
-        public Action OnMaxDistance;
-
         [SerializeField] private GameDataContainer dataContainer;
 
         private void Awake()
@@ -20,6 +16,7 @@ namespace RimuruDev.FromPlayclapp
 
         private void Start()
         {
+
             dataContainer.MotionSpeedInputField.text = dataContainer.motionSpeed.ToString();
             dataContainer.SpawnCooldownInputField.text = dataContainer.SpawnCooldown.ToString();
             dataContainer.MaxDistanceInputField.text = dataContainer.MaxMotionDistance.ToString();
@@ -28,30 +25,17 @@ namespace RimuruDev.FromPlayclapp
             dataContainer.SpawnCooldownText.text = $"Spawn cooldown: {dataContainer.SpawnCooldown}";
             dataContainer.MaxDistanceText.text = $"Max distance: {dataContainer.MaxMotionDistance}";
 
-            dataContainer.MotionSpeedInputField.onValueChanged.AddListener(delegate
-            {
-                EnterMotionSpeed();
-            });
-
-            dataContainer.MaxDistanceInputField.onValueChanged.AddListener(delegate
-            {
-                EnterMaxDistance();
-            });
-
-            dataContainer.SpawnCooldownInputField.onValueChanged.AddListener(delegate
-            {
-                EnterSpawnCooldown();
-            });
+            dataContainer.MotionSpeedInputField.onValueChanged.AddListener(delegate { EnterMotionSpeed(); });
+            dataContainer.MaxDistanceInputField.onValueChanged.AddListener(delegate { EnterMaxDistance(); });
+            dataContainer.SpawnCooldownInputField.onValueChanged.AddListener(delegate { EnterSpawnCooldown(); });
         }
 
-        private void OnEnable()
-        {
-            OnEnterMotionSpeed += Test;
-        }
 
-        private void Test()
+        private void OnDestroy()
         {
-            Debug.Log("InputField");
+            dataContainer.MotionSpeedInputField.onValueChanged.RemoveListener(delegate { EnterMotionSpeed(); });
+            dataContainer.MaxDistanceInputField.onValueChanged.RemoveListener(delegate { EnterMaxDistance(); });
+            dataContainer.SpawnCooldownInputField.onValueChanged.RemoveListener(delegate { EnterSpawnCooldown(); });
         }
 
         public void EnterMotionSpeed()
