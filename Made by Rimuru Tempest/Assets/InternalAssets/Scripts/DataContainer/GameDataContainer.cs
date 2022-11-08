@@ -54,7 +54,17 @@ namespace RimuruDev.FromPlayclapp
         public Text SpawnCooldownText { get => spawnCooldownText; set => spawnCooldownText = value; }
         public Text MaxDistanceText { get => maxDistanceText; set => maxDistanceText = value; }
 
-        public TMP_InputField MotionSpeedInputField { get => motionSpeedInputField; set => motionSpeedInputField = value; }
+        public TMP_InputField MotionSpeedInputField
+        {
+            get => motionSpeedInputField;
+            set
+            {
+                //motionSpeedInputField.onva
+                // uiController.OnEnterMotionSpeed?.Invoke();
+                motionSpeedInputField = value;//Mathf.Clamp(value, 0.01f, ushort.MaxValue / 2);
+            }
+        }
+
         public TMP_InputField SpawnCooldownInputField { get => spawnCooldownInputField; set => spawnCooldownInputField = value; }
         public TMP_InputField MaxDistanceInputField { get => maxDistanceInputField; set => maxDistanceInputField = value; }
 

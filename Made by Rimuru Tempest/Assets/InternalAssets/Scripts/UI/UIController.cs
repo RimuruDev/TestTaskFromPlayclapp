@@ -6,6 +6,10 @@ namespace RimuruDev.FromPlayclapp
 {
     public sealed class UIController : MonoBehaviour
     {
+        public Action OnEnterMotionSpeed;
+        public Action OnEnterSpawnCooldown;
+        public Action OnMaxDistance;
+
         [SerializeField] private GameDataContainer dataContainer;
 
         private void Awake()
@@ -23,6 +27,31 @@ namespace RimuruDev.FromPlayclapp
             dataContainer.MotionSpeedText.text = $"Motion speed: {dataContainer.motionSpeed}";
             dataContainer.SpawnCooldownText.text = $"Spawn cooldown: {dataContainer.SpawnCooldown}";
             dataContainer.MaxDistanceText.text = $"Max distance: {dataContainer.MaxMotionDistance}";
+
+            dataContainer.MotionSpeedInputField.onValueChanged.AddListener(delegate
+            {
+                EnterMotionSpeed();
+            });
+
+            dataContainer.MaxDistanceInputField.onValueChanged.AddListener(delegate
+            {
+                EnterMaxDistance();
+            });
+
+            dataContainer.SpawnCooldownInputField.onValueChanged.AddListener(delegate
+            {
+                EnterSpawnCooldown();
+            });
+        }
+
+        private void OnEnable()
+        {
+            OnEnterMotionSpeed += Test;
+        }
+
+        private void Test()
+        {
+            Debug.Log("InputField");
         }
 
         public void EnterMotionSpeed()
