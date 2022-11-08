@@ -4,7 +4,7 @@ namespace RimuruDev.FromPlayclapp
 {
     public sealed class ObjectPool : MonoBehaviour
     {
-        [SerializeField] private GameDataContainer dataContainer;
+        [SerializeField, HideInInspector] private GameDataContainer dataContainer;
 
         private void Awake() => InitRef();
 
@@ -27,12 +27,13 @@ namespace RimuruDev.FromPlayclapp
 
         private void PopulatingObjectPool()
         {
-            for (int i = 0; i < dataContainer.MaxAmountPerPool; i++)
+            for (int i = 0; i < dataContainer.GetGameplaySettings.MaxAmountPerPool; i++)
             {
-                var rndIndex = UnityEngine.Random.Range(0, dataContainer.ObjectPrefab.Length);
-                var cube = Instantiate(dataContainer.ObjectPrefab[rndIndex], dataContainer.SpawnPoint);
+                var rndIndex = UnityEngine.Random.Range(0, dataContainer.GetGameplaySettings.GetPrefabsForSpawn.Length);
 
-                cube.transform.SetParent(dataContainer.ObjectContainerParent);
+                var cube = Instantiate(dataContainer.GetGameplaySettings.GetPrefabsForSpawn[rndIndex], dataContainer.GetTransformInspectorHelper[(int)TransformInspectorHelper.SpawnPoin]);
+
+                cube.transform.SetParent(dataContainer.GetTransformInspectorHelper[(int)TransformInspectorHelper.InstanceParent]);
                 cube.SetActive(false);
 
                 dataContainer.PooledObjects.Add(cube);

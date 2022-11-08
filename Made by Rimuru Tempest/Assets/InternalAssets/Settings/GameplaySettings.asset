@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1deabd946ea44b39aebfc924ba4463, type: 3}
+  m_Name: GameplaySettings
+  m_EditorClassIdentifier: 
+  maxAmountPerPool: 100
+  spawnCooldown: 1
+  prefabsForSpawn:
+  - {fileID: 521031247987255540, guid: 520243676ea46ee439626a72de6524be, type: 3}
+  - {fileID: 8726603433291071765, guid: b86ec16f01464674d9941767e567a480, type: 3}
+  - {fileID: 4080203859530133191, guid: 003a5f3093db0e145892fdd69d4516bb, type: 3}
+  - {fileID: 6393378929595038062, guid: 0e015c6f1fec25b4e9af0275a19ee06e, type: 3}
+  maxMotionDistance: 100
+  motionSpeed: 10

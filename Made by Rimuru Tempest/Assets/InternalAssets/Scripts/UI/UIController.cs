@@ -6,97 +6,81 @@ namespace RimuruDev.FromPlayclapp
 {
     public sealed class UIController : MonoBehaviour
     {
-        [SerializeField] private GameDataContainer dataContainer;
+        [SerializeField, HideInInspector] private GameDataContainer dataContainer;
 
-        private void Awake()
-        {
-            if (dataContainer == null)
-                dataContainer = FindObjectOfType<GameDataContainer>();
-        }
+        private void Awake() => CheckRefs();
 
         private void Start()
         {
+            dataContainer.InputFielContainer.MotionSpeedInputField.onValueChanged.AddListener(delegate { EnterMotionSpeed(); });
+            dataContainer.InputFielContainer.MaxDistanceInputField.onValueChanged.AddListener(delegate { EnterMaxDistance(); });
+            dataContainer.InputFielContainer.SpawnCooldownInputField.onValueChanged.AddListener(delegate { EnterSpawnCooldown(); });
 
-            dataContainer.MotionSpeedInputField.text = dataContainer.motionSpeed.ToString();
-            dataContainer.SpawnCooldownInputField.text = dataContainer.SpawnCooldown.ToString();
-            dataContainer.MaxDistanceInputField.text = dataContainer.MaxMotionDistance.ToString();
-
-            dataContainer.MotionSpeedText.text = $"Motion speed: {dataContainer.motionSpeed}";
-            dataContainer.SpawnCooldownText.text = $"Spawn cooldown: {dataContainer.SpawnCooldown}";
-            dataContainer.MaxDistanceText.text = $"Max distance: {dataContainer.MaxMotionDistance}";
-
-            dataContainer.MotionSpeedInputField.onValueChanged.AddListener(delegate { EnterMotionSpeed(); });
-            dataContainer.MaxDistanceInputField.onValueChanged.AddListener(delegate { EnterMaxDistance(); });
-            dataContainer.SpawnCooldownInputField.onValueChanged.AddListener(delegate { EnterSpawnCooldown(); });
+            dataContainer.InputFielContainer.MotionSpeedInputField.text = $"{dataContainer.GetGameplaySettings.MotionSpeed}";
+            dataContainer.InputFielContainer.SpawnCooldownInputField.text = $"{dataContainer.GetGameplaySettings.SpawnCooldown}";
+            dataContainer.InputFielContainer.MaxDistanceInputField.text = $"{dataContainer.GetGameplaySettings.MaxMotionDistance}";
         }
-
 
         private void OnDestroy()
         {
-            dataContainer.MotionSpeedInputField.onValueChanged.RemoveListener(delegate { EnterMotionSpeed(); });
-            dataContainer.MaxDistanceInputField.onValueChanged.RemoveListener(delegate { EnterMaxDistance(); });
-            dataContainer.SpawnCooldownInputField.onValueChanged.RemoveListener(delegate { EnterSpawnCooldown(); });
+            dataContainer.InputFielContainer.MotionSpeedInputField.onValueChanged.RemoveListener(delegate { EnterMotionSpeed(); });
+            dataContainer.InputFielContainer.MaxDistanceInputField.onValueChanged.RemoveListener(delegate { EnterMaxDistance(); });
+            dataContainer.InputFielContainer.SpawnCooldownInputField.onValueChanged.RemoveListener(delegate { EnterSpawnCooldown(); });
         }
+
+        [System.Diagnostics.Conditional("DEBUG")]
+        private void OnValidate() => CheckRefs();
 
         public void EnterMotionSpeed()
         {
-            float previousValue = dataContainer.motionSpeed;
+            float previousValue = dataContainer.GetGameplaySettings.MotionSpeed;
 
-            if (float.TryParse(dataContainer.MotionSpeedInputField.text, out float result))
+            if (float.TryParse(dataContainer.InputFielContainer.MotionSpeedInputField.text, out float result))
             {
-                if (result < 0)
-                    result = previousValue;
+                if (result < 0) result = previousValue;
+                if (result == 0) result = 0.01f;
+                if (result >= ushort.MaxValue / 2) result = previousValue;
 
-                if (result == 0)
-                    result = 0.01f;
-
-                if (result >= short.MaxValue)
-                    result = previousValue;
-
-                dataContainer.motionSpeed = result;
-                dataContainer.MotionSpeedText.text = $"Motion speed: {dataContainer.motionSpeed}";
+                dataContainer.GetGameplaySettings.MotionSpeed = result;
+                dataContainer.TextContainer.MotionSpeedText.text = $"Motion speed: {dataContainer.GetGameplaySettings.MotionSpeed}";
             }
         }
 
         public void EnterSpawnCooldown()
         {
-            float previousValue = dataContainer.SpawnCooldown;
+            float previousValue = dataContainer.GetGameplaySettings.SpawnCooldown;
 
-            if (float.TryParse(dataContainer.SpawnCooldownInputField.text, out float result))
+            if (float.TryParse(dataContainer.InputFielContainer.SpawnCooldownInputField.text, out float result))
             {
-                if (result < 0)
-                    result = previousValue;
+                if (result < 0) result = previousValue;
+                if (result == 0) result = 0.01f;
+                if (result >= ushort.MaxValue / 2) result = previousValue;
 
-                if (result == 0)
-                    result = 0.01f;
-
-                if (result >= short.MaxValue)
-                    result = previousValue;
-
-                dataContainer.SpawnCooldown = result;
-                dataContainer.SpawnCooldownText.text = $"Spawn cooldown: {dataContainer.SpawnCooldown}";
+                dataContainer.GetGameplaySettings.SpawnCooldown = result;
+                dataContainer.TextContainer.SpawnCooldownText.text = $"Spawn cooldown: {dataContainer.GetGameplaySettings.SpawnCooldown}";
             }
 
         }
 
         public void EnterMaxDistance()
         {
-            float previousValue = dataContainer.MaxMotionDistance;
+            float previousValue = dataContainer.GetGameplaySettings.MaxMotionDistance;
 
-            if (float.TryParse(dataContainer.MaxDistanceInputField.text, out float result))
+            if (float.TryParse(dataContainer.InputFielContainer.MaxDistanceInputField.text, out float result))
             {
-                if (result < 0)
-                    result = previousValue;
+                if (result < 0) result = previousValue;
+                if (result == 0) result = 0.01f;
+                if (result >= ushort.MaxValue / 2) result = previousValue;
 
-                if (result == 0)
-                    result = 0.01f;
-
-                if (result >= short.MaxValue)
-                    result = previousValue;
-
-                dataContainer.MaxMotionDistance = result;
-                dataContainer.MaxDistanceText.text = $"Max distance: {dataContainer.MaxMotionDistance}";
+                dataContainer.GetGameplaySettings.MaxMotionDistance = result;
+                dataContainer.TextContainer.MaxDistanceText.text = $"Max distance: {dataContainer.GetGameplaySettings.MaxMotionDistance}";
             }
+        }
+
+        private void CheckRefs()
+        {
+            if (dataContainer == null)
+                dataContainer = FindObjectOfType<GameDataContainer>();
         }
     }
 }

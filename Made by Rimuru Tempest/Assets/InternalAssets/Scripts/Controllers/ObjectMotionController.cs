@@ -3,8 +3,8 @@ using UnityEngine;
 namespace RimuruDev.FromPlayclapp
 {
     public sealed class ObjectMotionController : MonoBehaviour
-    {   
-        [SerializeField] private GameDataContainer dataContainer;
+    {
+        [SerializeField, HideInInspector] private GameDataContainer dataContainer;
 
         private void Awake() => InitRef();
 
@@ -12,7 +12,7 @@ namespace RimuruDev.FromPlayclapp
         {
             Motion();
 
-            if (transform.position.z >= dataContainer.MaxMotionDistance)
+            if (transform.position.z >= dataContainer.GetGameplaySettings.MaxMotionDistance)
             {
                 gameObject.SetActive(false);
 
@@ -20,11 +20,12 @@ namespace RimuruDev.FromPlayclapp
             }
         }
 
+        [System.Diagnostics.Conditional("DEBUG")]
         private void OnValidate() => InitRef();
 
-        private void Motion() => transform.Translate(0, 0, dataContainer.motionSpeed * Time.deltaTime);
+        private void Motion() => transform.Translate(0, 0, dataContainer.GetGameplaySettings.MotionSpeed * Time.deltaTime);
 
-        private void ReturnCubeObject() => transform.position = dataContainer.SpawnPoint.position;
+        private void ReturnCubeObject() => transform.position = dataContainer.GetTransformInspectorHelper[(int)TransformInspectorHelper.SpawnPoin].position;
 
         private void InitRef()
         {
