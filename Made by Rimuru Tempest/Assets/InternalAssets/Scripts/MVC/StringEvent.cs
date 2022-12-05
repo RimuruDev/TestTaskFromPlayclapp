@@ -1,5 +1,9 @@
+using System;
+using UnityEngine.UI;
+using UnityEngine.Events;
+
 namespace RimuruDev.FromPlayclapp
 {
-    [System.Serializable]
-    public sealed class StringEvent : UnityEngine.Events.UnityEvent<string> { }
+    [Serializable]
+    public sealed class StringEvent : UnityEvent<string, Text> { }
 }
