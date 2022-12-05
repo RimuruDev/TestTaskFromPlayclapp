@@ -1,38 +1,23 @@
-﻿using System.Collections.Generic;
-using TMPro;
-
-namespace RimuruDev.FromPlayclapp
+﻿namespace RimuruDev.FromPlayclapp.MVC
 {
     public sealed class InputFieldModel
     {
-        public TMP_InputField _motionSpeedInputField = null;
-        public TMP_InputField _spawnCooldownInputField = null;
-        public TMP_InputField _maxDistanceInputField = null;
+        public InputFieldNode motionSpeed = default;
+        public InputFieldNode spawnCooldown = default;
+        public InputFieldNode distance = default;
 
-        public List<TMP_InputField> inputFieldList = null;
-
-        public InputFieldModel(TMP_InputField motionSpeedInputField, TMP_InputField spawnCooldownInputField, TMP_InputField maxDistanceInputField)
+        public InputFieldModel(InputFieldNode motionSpeed, InputFieldNode spawnCooldown, InputFieldNode distance)
         {
-            this._motionSpeedInputField = motionSpeedInputField;
-            this._spawnCooldownInputField = spawnCooldownInputField;
-            this._maxDistanceInputField = maxDistanceInputField;
-
-            inputFieldList = new()
-            {
-                _motionSpeedInputField,
-                _spawnCooldownInputField,
-                _maxDistanceInputField
-            };
+            this.motionSpeed = motionSpeed;
+            this.spawnCooldown = spawnCooldown;
+            this.distance = distance;
         }
 
-        public List<StringEvent> stringEvents;
-
-        public InputFieldModel(List<StringEvent> stringEvents)
+        ~InputFieldModel()
         {
-            foreach (var item in stringEvents)
-            {
-                this.stringEvents.Add(item);
-            }
+            motionSpeed = default;
+            spawnCooldown = default;
+            distance = default;
         }
     }
 }
