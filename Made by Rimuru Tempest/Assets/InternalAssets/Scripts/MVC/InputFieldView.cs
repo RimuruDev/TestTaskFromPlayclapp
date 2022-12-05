@@ -1,33 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace RimuruDev.FromPlayclapp
+namespace RimuruDev.FromPlayclapp.MVC
 {
     public sealed class InputFieldView : MonoBehaviour
     {
-        public StringEvent stringEventstringEvent;
+        [SerializeField] private InputFieldNode motionSpeed;
+        [SerializeField] private InputFieldNode spawnCooldown;
+        [SerializeField] private InputFieldNode distance;
 
-        public List<StringEvent> InputFieldEnebtList;
-        public List<TMP_InputField> InputFieldEnebtList2;
+        private InputFieldController inputFieldController = null;
 
-        public InputFieldController inputFieldController;
-        public InputFieldView _inputFieldView;
-        public InputFieldModel _inputFieldModel;
+        private void Awake() => inputFieldController = new(motionSpeed, spawnCooldown, distance);
+    }
 
-        // Bind low lewel
-        public TMP_InputField _motionSpeedInputField;
-        public TMP_InputField _spawnCooldownInputField;
-        public TMP_InputField _maxDistanceInputField;
+    [Serializable]
+    public struct InputFieldNode
+    {
+        public TMP_InputField InputField => inputField;
+        [SerializeField] private TMP_InputField inputField;
 
-        private void Start()
-        {
-            _inputFieldModel = new(_motionSpeedInputField, _spawnCooldownInputField, _maxDistanceInputField);
-            inputFieldController = new(_inputFieldModel);
-
-            _inputFieldModel = new(InputFieldEnebtList);
-        }
-
-     //   private void Update() => inputFieldController.UpdateText();
+        public Text Text => text;
+        [SerializeField] private Text text;
     }
 }
