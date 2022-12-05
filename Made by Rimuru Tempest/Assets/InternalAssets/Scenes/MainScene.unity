@@ -196,7 +196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &59164975
 Transform:
   m_ObjectHideFlags: 0
@@ -999,7 +999,7 @@ Transform:
   - {fileID: 1863122629}
   - {fileID: 869717198}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &234469387
 PrefabInstance:
@@ -1259,7 +1259,7 @@ Transform:
   m_Children:
   - {fileID: 620541682}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &340836422
 PrefabInstance:
@@ -2452,7 +2452,7 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 705507995}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &582711424
 PrefabInstance:
@@ -2522,7 +2522,7 @@ GameObject:
   - component: {fileID: 620541682}
   - component: {fileID: 620541683}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: InputFieldView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2555,30 +2555,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb2ab6d619cde3b40b98522eda4914a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stringEventstringEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  InputFieldEnebtList:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  InputFieldEnebtList2:
-  - {fileID: 1576450903}
-  _inputFieldView: {fileID: 0}
-  _motionSpeedInputField: {fileID: 0}
-  _spawnCooldownInputField: {fileID: 0}
-  _maxDistanceInputField: {fileID: 0}
+  motionSpeed:
+    inputField: {fileID: 1576450903}
+    text: {fileID: 369894753}
+  spawnCooldown:
+    inputField: {fileID: 1064669837}
+    text: {fileID: 2094892960}
+  distance:
+    inputField: {fileID: 1173023764}
+    text: {fileID: 729733436}
 --- !u!1 &625061439
 GameObject:
   m_ObjectHideFlags: 0
@@ -8999,7 +8984,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064669835
 GameObject:
@@ -11866,7 +11851,7 @@ Transform:
   - {fileID: 1410430510}
   - {fileID: 554268239}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1770659225
 PrefabInstance:
@@ -17447,7 +17432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2146636150
 Transform:
   m_ObjectHideFlags: 0
@@ -17465,5 +17450,5 @@ Transform:
   - {fileID: 2105118605}
   - {fileID: 1622076947}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
