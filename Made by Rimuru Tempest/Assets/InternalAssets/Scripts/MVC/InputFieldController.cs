@@ -1,70 +1,72 @@
-namespace RimuruDev.FromPlayclapp
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace RimuruDev.FromPlayclapp.MVC
 {
     public sealed class InputFieldController
     {
-        public InputFieldModel _inputFieldModel = null;
+        private InputFieldModel _inputFieldModel = null;
 
-        public InputFieldController(InputFieldModel inputFieldModel)
+        private readonly string[] constText = { "Motion speed:", "Spawn cooldown:", "Max distance:" };
+
+        public InputFieldController(InputFieldNode motionSpeed, InputFieldNode spawnCooldown, InputFieldNode distance)
         {
-            _inputFieldModel = inputFieldModel;
+            _inputFieldModel = new(motionSpeed, spawnCooldown, distance);
 
             OnEnable();
         }
 
+        ~InputFieldController() => OnDisable();
+
         private void OnEnable()
         {
-            _inputFieldModel._spawnCooldownInputField.onValueChanged.AddListener(delegate { ValidateData(); });
-            _inputFieldModel._maxDistanceInputField.onValueChanged.AddListener(delegate { ValidateData(); });
-            _inputFieldModel._motionSpeedInputField.onValueChanged.AddListener(delegate { ValidateData(); });
+            _inputFieldModel.motionSpeed.InputField.onEndEdit.AddListener(delegate
+            {
+                Input(_inputFieldModel.motionSpeed.InputField, _inputFieldModel.motionSpeed.Text, constText[0]);
+            });
+
+            _inputFieldModel.spawnCooldown.InputField.onEndEdit.AddListener(delegate
+            {
+                Input(_inputFieldModel.spawnCooldown.InputField, _inputFieldModel.spawnCooldown.Text, constText[1]);
+            });
+
+            _inputFieldModel.distance.InputField.onEndEdit.AddListener(delegate
+            {
+                Input(_inputFieldModel.distance.InputField, _inputFieldModel.distance.Text, constText[2]);
+            });
         }
 
         private void OnDisable()
         {
-            _inputFieldModel._spawnCooldownInputField.onValueChanged.RemoveAllListeners();
-            _inputFieldModel._maxDistanceInputField.onValueChanged.RemoveAllListeners();
-            _inputFieldModel._motionSpeedInputField.onValueChanged.RemoveAllListeners();
+            _inputFieldModel.motionSpeed.InputField.onEndEdit.RemoveListener(delegate
+            {
+                Input(_inputFieldModel.motionSpeed.InputField, _inputFieldModel.motionSpeed.Text, constText[0]);
+            });
+
+            _inputFieldModel.spawnCooldown.InputField.onEndEdit.RemoveListener(delegate
+            {
+                Input(_inputFieldModel.spawnCooldown.InputField, _inputFieldModel.spawnCooldown.Text, constText[1]);
+            });
+
+            _inputFieldModel.distance.InputField.onEndEdit.RemoveListener(delegate
+            {
+                Input(_inputFieldModel.distance.InputField, _inputFieldModel.distance.Text, constText[2]);
+            });
+
+            _inputFieldModel = null;
         }
 
-        // ~InputFieldController() => OnDisable();
-
-        public void UpdateText()
+        private void Input(TMP_InputField inputField, Text displayText, string text)
         {
-
-        }
-
-        public void ValidateData()
-        {
-//
-          //  for (int i = 0; i < _inputFieldModel.stringEvents.Count; i++)
-        //    {
-                // _inputFieldModel.stringEvents[i].AddListener(delegate
-                // {
-                //_inputFieldModel.stringEvents[i].
-                //});
-           // }
-
-            /*
-            foreach (var inputField in _inputFieldModel.inputFieldList)
+            if (float.TryParse(inputField.text, out float result))
             {
-                if (float.TryParse(inputField.text, out var result))
-                {
-                    if (result < 0 || result > 1000) result = 0;
+                if (result < 0 || result > 1000) { result = 0; Debug.Log("Reached the limit!"); }
 
-
-                }
-            }*/
-            /*
-            float previousValue = dataContainer.GetGameplaySettings.MotionSpeed;
-
-            if (float.TryParse(dataContainer.InputFielContainer.MotionSpeedInputField.text, out float result))
-            {
-                if (result < 0) result = previousValue;
-                if (result == 0) result = 0.01f;
-                if (result >= ushort.MaxValue / 2) result = previousValue;
-
-                dataContainer.GetGameplaySettings.MotionSpeed = result;
-                dataContainer.TextContainer.MotionSpeedText.text = $"Motion speed: {dataContainer.GetGameplaySettings.MotionSpeed}";
-            }*/
+                displayText.text = $"{text} {result}";
+            }
+            else
+                Debug.Log($"TryParse is failure! Input: [{inputField.text}]");
         }
     }
 }
