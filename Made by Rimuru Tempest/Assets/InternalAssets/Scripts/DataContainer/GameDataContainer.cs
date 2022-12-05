@@ -21,10 +21,10 @@ namespace RimuruDev.FromPlayclapp
         [SerializeField, HideInInspector] Transform[] transformInspectorHelper;
         public Transform[] GetTransformInspectorHelper => transformInspectorHelper;
 
-        [SerializeField] private InputFielContainer inputFielContainer = new InputFielContainer();
+        [SerializeField] private InputFielContainer inputFielContainer = new();
         public InputFielContainer InputFielContainer { get => inputFielContainer; set => inputFielContainer = value; }
 
-        [SerializeField] private TextContainer textContainer = new TextContainer();
+        [SerializeField] private TextContainer textContainer = new();
         public TextContainer TextContainer { get => textContainer; set => textContainer = value; }
 
         private void Start()
