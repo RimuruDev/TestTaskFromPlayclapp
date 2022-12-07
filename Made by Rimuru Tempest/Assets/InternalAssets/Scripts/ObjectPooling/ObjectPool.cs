@@ -14,13 +14,13 @@ namespace RimuruDev.FromPlayclapp
 
         public GameObject GetPoolingObjects()
         {
-            for (int i = 0; i < dataContainer.PooledObjects.Count; i++)
-            {
-                if (!dataContainer.PooledObjects[i].activeInHierarchy)
-                {
-                    return dataContainer.PooledObjects[i];
-                }
-            }
+            //for (int i = 0; i < dataContainer.PooledObjects.Count; i++)
+            //{
+            //    if (!dataContainer.PooledObjects[i].activeInHierarchy)
+            //    {
+            //      //  return dataContainer.PooledObjects[i];//
+            //    }
+            //}
 
             return default;
         }
@@ -36,7 +36,7 @@ namespace RimuruDev.FromPlayclapp
                 cube.transform.SetParent(dataContainer.GetTransformInspectorHelper[(int)TransformInspectorHelper.InstanceParent]);
                 cube.SetActive(false);
 
-                dataContainer.PooledObjects.Add(cube);
+               // dataContainer.PooledObjects.Add(cube);
             }
         }
 

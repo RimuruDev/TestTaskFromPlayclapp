@@ -61,7 +61,11 @@ namespace RimuruDev.FromPlayclapp.MVC
         {
             if (float.TryParse(inputField.text, out float result))
             {
-                if (result < 0 || result > 1000) { result = 0; Debug.Log("Reached the limit!"); }
+                if (result < 0 || result > 1000)
+                {
+                    result = 0;
+                    inputField.text = "0";
+                }
 
                 displayText.text = $"{text} {result}";
             }

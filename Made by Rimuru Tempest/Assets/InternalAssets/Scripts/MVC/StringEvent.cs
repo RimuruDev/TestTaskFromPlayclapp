@@ -1,5 +1,4 @@
 using System;
-using UnityEngine.UI;
 using UnityEngine.Events;
 
 namespace RimuruDev.FromPlayclapp

@@ -1,7 +1,4 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace RimuruDev.FromPlayclapp.MVC
 {
@@ -14,15 +11,5 @@ namespace RimuruDev.FromPlayclapp.MVC
         private InputFieldController inputFieldController = null;
 
         private void Awake() => inputFieldController = new(motionSpeed, spawnCooldown, distance);
-    }
-
-    [Serializable]
-    public struct InputFieldNode
-    {
-        public TMP_InputField InputField => inputField;
-        [SerializeField] private TMP_InputField inputField;
-
-        public Text Text => text;
-        [SerializeField] private Text text;
     }
 }
