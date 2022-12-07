@@ -29,14 +29,14 @@ namespace RimuruDev.FromPlayclapp
         {
             for (int i = 0; i < dataContainer.GetGameplaySettings.MaxAmountPerPool; i++)
             {
-                var rndIndex = UnityEngine.Random.Range(0, dataContainer.GetGameplaySettings.GetPrefabsForSpawn.Length);
+                var rndIndex = Random.Range(0, dataContainer.GetGameplaySettings.GetPrefabsForSpawn.Length);
 
                 var cube = Instantiate(dataContainer.GetGameplaySettings.GetPrefabsForSpawn[rndIndex], dataContainer.GetTransformInspectorHelper[(int)TransformInspectorHelper.SpawnPoin]);
 
                 cube.transform.SetParent(dataContainer.GetTransformInspectorHelper[(int)TransformInspectorHelper.InstanceParent]);
                 cube.SetActive(false);
 
-               // dataContainer.PooledObjects.Add(cube);
+                // dataContainer.PooledObjects.Add(cube);
             }
         }
 

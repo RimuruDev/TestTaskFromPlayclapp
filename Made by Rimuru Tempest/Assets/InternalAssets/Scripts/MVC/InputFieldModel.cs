@@ -6,6 +6,10 @@
         public InputFieldNode spawnCooldown = default;
         public InputFieldNode distance = default;
 
+        public float currentMotionSpeed;
+        public float currentSpawnCooldown;
+        public float currentDistance;
+
         public InputFieldModel(InputFieldNode motionSpeed, InputFieldNode spawnCooldown, InputFieldNode distance)
         {
             this.motionSpeed = motionSpeed;

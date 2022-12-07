@@ -68,6 +68,10 @@ namespace RimuruDev.FromPlayclapp.MVC
                 }
 
                 displayText.text = $"{text} {result}";
+
+
+
+                //PlayerPrefs.SetFloat(inputField.name, result);
             }
             else
                 Debug.Log($"TryParse is failure! Input: [{inputField.text}]");
