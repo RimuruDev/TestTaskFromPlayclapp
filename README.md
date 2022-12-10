@@ -1,4 +1,5 @@
 # :pushpin:Sample
+
 <p align="center">
   <a>
     <img alt="Made With Unity" src="https://img.shields.io/badge/made%20with-Unity-57b9d3.svg?logo=Unity">
@@ -18,7 +19,14 @@
   <a>
     <img alt="Last Release" src="https://img.shields.io/github/v/release/RimuruDev/TestTaskFromPlayclapp?include_prereleases&logo=Dropbox&color=yellow">
   </a>
+  <a>
+    <img alt="GitHub stars" src="https://img.shields.io/github/stars/RimuruDev/TestTaskFromPlayclapp?branch=main&label=Stars&logo=GitHub&logoColor=ffffff&labelColor=282828&color=informational&style=flat">
+  </a>
+  <a>
+    <img alt="GitHub user stars" src="https://img.shields.io/github/stars/RimuruDev?affiliations=OWNER&branch=main&label=User%20Stars&logo=GitHub&logoColor=ffffff&labelColor=282828&color=informational&style=flat">
+  </a>
 </p>
+
 
 <p align="center">
   <img width="736" height="364" src="https://github.com/RimuruDev/TestTaskFromPlayclapp/blob/main/GitResources/Sample.gif">
